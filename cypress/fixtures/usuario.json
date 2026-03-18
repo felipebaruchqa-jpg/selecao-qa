@@ -1,0 +1,9 @@
+{
+  "email": "testador@dasilva.com",
+  "senha": "Teste@123",
+  "nascimento": "1993-08-19",
+  "admin": {
+    "email": "felipepitanga@uneb.br",
+    "senha": "Teste@12345"
+  }
+}
