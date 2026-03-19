@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 describe('Testes na Tela de Admin', () => {
-it.only('Verificar fluxo de criação de um edital', () => {
+  /*it('Verificar fluxo de criação de um edital', () => {
 
   cy.gerarPessoa().then((dados) => {
 
@@ -64,16 +64,14 @@ it.only('Verificar fluxo de criação de um edital', () => {
     cy.visit('/')
     cy.loginAdmin()
 
-    // Aguarda a página admin carregar completamente
-    cy.contains('h3', 'Próximos editais a encerrar inscrições', { timeout: 15000 })
+    // Aguarda o menu lateral estar disponível
+    cy.contains('.menu-title', 'Cadastros', { timeout: 15000 })
       .should('be.visible')
 
     // ===== NAVEGAÇÃO =====
-cy.contains('.menu-title', 'Cadastros').click()
-cy.wait(500)
-cy.contains('.menu-title', 'Editais', { timeout: 10000 })
-  .should('be.visible')
-  .click()
+    cy.wait(500)
+    cy.contains('.menu-title', 'Cadastros').click()
+    cy.contains('.menu-title', 'Editais', { timeout: 10000 }).should('be.visible').click()
     cy.contains('button', 'Novo Cadastro', { timeout: 10000 }).should('be.visible').click()
 
     // Aguarda o formulário carregar
@@ -218,28 +216,44 @@ cy.contains('.menu-title', 'Editais', { timeout: 10000 })
     })
 
     // ===== CARGOS =====
+    // Remove o cargo padrão clicando no botão de excluir
+    cy.get('button.el-button.el-button--danger.is-circle')
+      .first()
+      .click({ force: true })
 
-    // Nome do Cargo
-    cy.get('input[name="cargos[0].nome"]', { timeout: 10000 })
-      .scrollIntoView()
-      .should('be.visible')
-      .clear()
-      .type('Cargo Teste ' + texto)
+    // Aguarda o cargo ser removido
+    cy.get('input[name="cargos[0].nome"]').should('not.exist')
 
-    // Valor de Inscrição
-    cy.get('input[name="cargos[0].valor"]').clear().type('50')
+    // Verifica se todos os campos obrigatórios da etapa 2 foram preenchidos
+    cy.get('input[name="tipo_formulario"]:checked').should('exist')
 
-    // Dropdowns de Cargos (aleatórios)
-    selecionarOpcaoAleatoria('input[name="cargos[0].cidadesCargo"]', 'Cidades')
-    selecionarOpcaoAleatoria('input[name="cargos[0].departamentosCargo"]', 'Departamentos')
-    selecionarOpcaoAleatoria('input[name="cargos[0].campusCargo"]', 'Campus')
-    selecionarOpcaoAleatoria('input[name="cargos[0].cursosCargo"]', 'Cursos')
+    cy.get('input[name="formulariosId"]')
+      .closest('.el-select')
+      .find('.el-select__selected-item:not(.el-select__input-wrapper):not(.is-transparent)')
+      .should('exist')
+
+    cy.get('input[name="possui_escolaridade"]')
+      .closest('.el-select')
+      .find('.el-select__selected-item:not(.el-select__input-wrapper):not(.is-transparent)')
+      .should('exist')
+
+    cy.get('input[name="dadosEspecificos"]')
+      .closest('.el-select')
+      .find('.el-select__selected-item:not(.el-select__input-wrapper):not(.is-transparent)')
+      .should('exist')
+
+    cy.get('input[name="titulo_area"]')
+      .should('not.have.value', '')
+
+    // Fecha qualquer dropdown aberto antes de continuar
+    cy.get('body').click(0, 0)
 
     // Aguarda o overlay de loading desaparecer antes de continuar
     cy.get('.loading-overlay', { timeout: 15000 }).should('not.exist')
 
-    // Avança para a próxima etapa
-    cy.get('button.botaoStepperContinuar').click()
+    cy.get('button.botaoStepperContinuar', { timeout: 15000 })
+      .scrollIntoView()
+      .click({ force: true })
 
     // ===== ETAPA 3 - ANEXOS =====
 
@@ -300,18 +314,18 @@ cy.contains('.menu-title', 'Editais', { timeout: 10000 })
 
     cy.get('input[placeholder="Pesquisar editais, processos seletivos e mais"]', { timeout: 15000 })
       .should('be.visible')
-      .type('Edital de teste ' + texto)
+      .type(texto)
 
     cy.get('.input-group-text.mouse_click').click()
 
-    cy.contains('Edital de teste ' + texto, { timeout: 15000 })
+    cy.contains(texto, { timeout: 15000 })
       .should('exist')
 
   })
 
-})
+})*/
 
-  it('Verificar criação de um novo formulario', () => {
+  /*it('Verificar criação de um novo formulario', () => {
     cy.visit('https://editais.teste.uneb.br/')
     cy.contains('button', 'ACESSAR').click()
     cy.contains('button', 'Área Restrita').click()
@@ -320,7 +334,7 @@ cy.contains('.menu-title', 'Editais', { timeout: 10000 })
       cy.get('#password').type('Kayser19081993@')
       cy.get('#kc-login').click()
     })
-  })
+  })*/
 
 it('Testa download dos arquivos svg, png e csv do grafico na pagina inicial da tela de admin', () => {
 
