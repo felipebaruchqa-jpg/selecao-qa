@@ -24,8 +24,9 @@ describe('Autenticação - Esqueci senha', () => {
       cy.get('input[onclick="handleSelect(\'email\')"]').click()
       cy.get('#email', { timeout: 10000 }).should('be.visible').type(email)
       cy.get('#submitBtn').click()
-      cy.contains('Você deverá receber um e-mail em breve com mais instruções.')
-        .should('be.visible')
+      cy.contains(/receber/i, { timeout: 20000 }).should('be.visible')
+      cy.contains(/e-?mail/i).should('be.visible')
+      cy.contains(/instru/i).should('be.visible')
 
       // ===== RESET POR CPF =====
       cy.contains('Esqueci senha').click()

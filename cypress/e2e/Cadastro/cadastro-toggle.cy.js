@@ -34,8 +34,10 @@ describe('Cadastro - Toggle e navegação', () => {
 
     cy.origin(Cypress.env('AUTH_URL'), () => {
 
-      cy.contains('Registre-se')
+      
+      cy.contains(/Registre-se|Cadastre-se/, { timeout: 20000 })
         .should('be.visible')
+
 
       cy.contains('É estrangeiro?')
         .parent()

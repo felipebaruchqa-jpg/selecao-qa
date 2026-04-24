@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="24.168" tests="4" failures="0" skipped="1">
+  <testsuite name="Root Suite" timestamp="2026-03-26T19:28:57" tests="0" file="cypress/e2e/Auth/login.cy.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Autenticação - Login" timestamp="2026-03-26T19:28:57" tests="4" time="24.167" failures="0">
+    <testcase name="Autenticação - Login Fluxo de login, redirect dos botões &quot;Minha conta&quot;, &quot;Minhas Inscrições&quot;, &quot;Meus Recursos&quot; e logout" time="9.867" classname="Fluxo de login, redirect dos botões &quot;Minha conta&quot;, &quot;Minhas Inscrições&quot;, &quot;Meus Recursos&quot; e logout">
+    </testcase>
+    <testcase name="Autenticação - Login Fluxo de login como admin e logout" time="3.298" classname="Fluxo de login como admin e logout">
+    </testcase>
+    <testcase name="Autenticação - Login Verifica se a mensagem de usuário ou senha inválida está sendo exibida" time="10.900" classname="Verifica se a mensagem de usuário ou senha inválida está sendo exibida">
+    </testcase>
+  </testsuite>
+</testsuites>

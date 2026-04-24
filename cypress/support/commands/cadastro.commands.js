@@ -102,3 +102,28 @@ Cypress.Commands.add('authOriginValidacoes', () => {
   })
 
 })
+
+// support/commands/cadastro.commands.js (ou onde preferir)
+
+Cypress.Commands.add('preencherCepComRetry', (cepInicial, tentativas = 3) => {
+  const cepsFallback = ['40728235', '41820020', '40301110']
+
+const tentarCep = (cep, index) => {
+  cy.get('input[name="cep"]').clear().type(cep)
+
+  cy.get('input[name="rua"]', { timeout: 10000 }).then(($rua) => {
+    if ($rua.val() === '') {
+      if (index < cepsFallback.length) {
+        cy.log(`⚠️ CEP ${cep} inválido, tentando fallback: ${cepsFallback[index]}`)
+        tentarCep(cepsFallback[index], index + 1)
+      } else {
+        throw new Error('Nenhum CEP válido encontrado após todas as tentativas')
+      }
+    } else {
+      cy.log(`✅ CEP ${cep} válido e carregado`)
+    }
+  })
+}
+
+  tentar(cepInicial, 0)
+})

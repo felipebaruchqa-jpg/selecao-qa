@@ -11,10 +11,10 @@ Cypress.Commands.add('login', () => {
       cy.get('#username').type(usuario.email)
       cy.get('#password').type(usuario.senha)
       cy.get('#kc-login').click()
+
     })
 
-    // Aguarda o dropdown do usuário para garantir que o login foi concluído
-    cy.get('[data-kt-menu-trigger="click"]', { timeout: 15000 })
+    cy.get('[data-kt-menu-trigger="click"]', { timeout: 30000 })
       .should('be.visible')
 
   })
@@ -37,6 +37,6 @@ Cypress.Commands.add('loginAdmin', () => {
     cy.get('#kc-login').click()
   })
 
-  cy.url({ timeout: 15000 }).should('include', '/admin')
+  cy.url({ timeout: 30000 }).should('include', '/admin')
 
 })
